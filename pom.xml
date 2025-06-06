@@ -12,6 +12,7 @@
         <module>Selenium</module>
         <module>Cucumber</module>
         <module>Api</module>
+        <module>ProjectCG</module>
     </modules>
 
     <properties>
