@@ -6,13 +6,13 @@ import com.fasterxml.jackson.databind.node.ObjectNode;
 import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
-import io.restassured.common.mapper.TypeRef;
 import io.restassured.response.Response;
-import org.junit.Assert;
 import restful.response.BookingResponse;
 
 import java.util.Map;
 
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertNotNull;
 import static restful.request.BookingRequest.*;
 
 public class BookingSteps {
@@ -42,13 +42,13 @@ public class BookingSteps {
     }
     @Then("the response status code should be {int}")
     public void the_response_status_code_should_be(int statusCode) {
-        Assert.assertEquals(statusCode, response.getStatusCode());
+        assertEquals(statusCode, response.getStatusCode());
     }
     @Then("the response body should contain a bookingid field")
     public void the_response_body_should_contain_a_bookingid_field() {
         BookingResponse bookingResponse = response.as(BookingResponse.class);
         createdBookingId = bookingResponse.getBookingid();
-        Assert.assertNotNull("Booking ID is null", createdBookingId);
+        assertNotNull(createdBookingId, "Booking ID is null");
         System.out.println("Booking ID from Response " + createdBookingId);
         System.out.println("Firstname from Booking " + bookingResponse.getBooking().getFirstname());
         System.out.println("Chceckin date from Booking " + bookingResponse.getBooking().getBookingdates().getCheckin());
@@ -61,8 +61,8 @@ public class BookingSteps {
     @Then("the user is verified firstname {string} and lastname {string}")
     public void the_user_is_verified_firstname_and_lastname(String firstName, String lastName) {
         BookingResponse bookingResponse = response.as(BookingResponse.class);
-        Assert.assertEquals(firstName, bookingResponse.getFirstname());
-        Assert.assertEquals(lastName, bookingResponse.getLastname());
+        assertEquals(firstName, bookingResponse.getFirstname());
+        assertEquals(lastName, bookingResponse.getLastname());
     }
     @Given("the request body with ObjectMapper contains the following details")
     public void the_request_body_with_object_mapper_contains_the_following_details(Map<String, String> bookingDetails) {

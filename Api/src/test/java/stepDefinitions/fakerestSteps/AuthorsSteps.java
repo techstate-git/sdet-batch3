@@ -5,11 +5,11 @@ import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
 import io.restassured.common.mapper.TypeRef;
 import io.restassured.response.Response;
-import org.junit.Assert;
 
 import java.util.List;
 
 import static fakerest.request.AuthorsRequest.getAuthors;
+import static org.junit.jupiter.api.Assertions.assertEquals;
 
 public class AuthorsSteps {
     Response response;
@@ -22,7 +22,7 @@ public class AuthorsSteps {
 
     @Then("status code is {int}")
     public void status_code_is(int statusCode) {
-        Assert.assertEquals(statusCode, response.getStatusCode());
+        assertEquals(statusCode, response.getStatusCode());
     }
 
     @Given("the user is get authors by book id {int}")

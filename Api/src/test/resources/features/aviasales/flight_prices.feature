@@ -1,3 +1,4 @@
+@api
 Feature: Flight Price search API
 
 #  Scenario: Validate successful response for one-way search

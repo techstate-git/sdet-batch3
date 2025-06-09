@@ -5,12 +5,12 @@ import currency.models.SupportedCurrencies.CurrencyInfo;
 import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
 import io.restassured.response.Response;
-import org.junit.Assert;
 
 import java.sql.SQLOutput;
 import java.util.*;
 
 import static currency.client.CurrencyController.getCurrency;
+import static org.junit.jupiter.api.Assertions.assertFalse;
 
 public class CurrencySteps {
     Response response;
@@ -80,7 +80,7 @@ public class CurrencySteps {
             String status = info.getStatus();
 
             if (status.equalsIgnoreCase(string)) {
-                Assert.assertFalse(info.getAvailableUntil().isEmpty());
+                assertFalse(info.getAvailableUntil().isEmpty());
             } else {
                 System.out.println("Available until field is empty for: " + info.getCurrencyName());
             }

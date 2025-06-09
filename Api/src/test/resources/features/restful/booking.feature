@@ -1,3 +1,4 @@
+@api
 Feature: Create a new booking
   As a QA Engineer
   I want to send a POST request to create a booking

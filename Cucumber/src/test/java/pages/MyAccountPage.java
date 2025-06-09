@@ -1,10 +1,11 @@
 package pages;
 
-import org.junit.Assert;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
+
+import static org.junit.jupiter.api.Assertions.assertTrue;
 
 public class MyAccountPage {
     WebDriver driver;
@@ -28,11 +29,11 @@ public class MyAccountPage {
     public void loginValidation(String user) {
         String welcome = welcomeUser.getText();
         System.out.println(welcome);
-        Assert.assertTrue(welcome.contains(user));
+        assertTrue(welcome.contains(user));
     }
 
     public void noPrevOrders() {
         myOrders.click();
-        Assert.assertTrue(noOrdersMessage.isDisplayed());
+        assertTrue(noOrdersMessage.isDisplayed());
     }
 }

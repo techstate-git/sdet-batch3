@@ -2,10 +2,11 @@ package stepDefinitions;
 
 import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
-import org.junit.Assert;
 import org.openqa.selenium.WebDriver;
 import pages.SearchPage;
 import utils.DriverManager;
+
+import static org.junit.jupiter.api.Assertions.assertTrue;
 
 public class SearchSteps {
     WebDriver driver = DriverManager.getDriver();
@@ -19,7 +20,7 @@ public class SearchSteps {
     @Then("I sorted by {string}")
     public void sortProduct(String option) {
         searchPage.sortProduct(option);
-        Assert.assertTrue(searchPage.verifyFilter());
+        assertTrue(searchPage.verifyFilter());
     }
 
     @Then("I verify result contains {string}")

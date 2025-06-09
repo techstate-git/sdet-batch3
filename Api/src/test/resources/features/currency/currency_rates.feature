@@ -1,3 +1,4 @@
+@api
 Feature: test currency rates
 
   Scenario: Currency codes should be unique

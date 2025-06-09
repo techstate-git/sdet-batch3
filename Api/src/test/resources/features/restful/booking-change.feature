@@ -1,3 +1,4 @@
+@api
 Feature: Update a existing booking
 
   Background: Generate Authorization Token

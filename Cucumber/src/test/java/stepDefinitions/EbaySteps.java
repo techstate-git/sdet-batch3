@@ -3,10 +3,11 @@ package stepDefinitions;
 import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
-import org.junit.Assert;
 import org.openqa.selenium.WebDriver;
 import pages.Ebay;
 import utils.DriverManager;
+
+import static org.junit.jupiter.api.Assertions.assertTrue;
 
 public class EbaySteps {
     WebDriver driver = DriverManager.getDriver();
@@ -27,8 +28,7 @@ public class EbaySteps {
 
     @Then("I should see search results containing {string}")
     public void i_should_see_search_results_containing(String product) {
-        Assert.assertTrue("Search results do not contain the expected product!",
-                ebay.verifyTotalResults(product));
+        assertTrue(ebay.verifyTotalResults(product), "Search results do not contain the expected product!");
     }
 
     @When("I apply a price filter from {string} to {string}")
@@ -42,7 +42,6 @@ public class EbaySteps {
     public void i_should_see_search_results_within_the_price_range() {
         int min = Integer.parseInt(this.minPrice); //Reuse the stored value
         int max = Integer.parseInt(this.maxPrice); //Reuse the stored value
-        Assert.assertTrue("Some results are outside the price range",
-                ebay.verifyPriceRange(min, max));
+        assertTrue(ebay.verifyPriceRange(min, max), "Some results are outside the price range");
     }
 }

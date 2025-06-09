@@ -8,7 +8,7 @@ import io.cucumber.java.Scenario;
 public class Hooks {
     @Before("@ui")
     public void beforeScenario() {
-        DriverManager.initDriver();
+
     }
 
     @After("@ui")
@@ -16,6 +16,6 @@ public class Hooks {
         if (scenario.isFailed()) {
             //takescreenshot
         }
-//        DriverManager.quitDriver();
+
     }
 }

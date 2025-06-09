@@ -6,7 +6,6 @@ import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
 import io.restassured.common.mapper.TypeRef;
 import io.restassured.response.Response;
-import org.junit.Assert;
 
 import java.time.LocalDateTime;
 import java.time.ZoneOffset;
@@ -16,6 +15,7 @@ import java.util.List;
 
 import static fakerest.request.ActivitiesRequest.createActivity;
 import static fakerest.request.ActivitiesRequest.getActivities;
+import static org.junit.jupiter.api.Assertions.assertEquals;
 
 public class ActivitiesSteps {
     ActivitiesResponse activitiesResponse = new ActivitiesResponse();
@@ -25,7 +25,7 @@ public class ActivitiesSteps {
         Response response = getActivities();
         response.prettyPrint();
 
-        Assert.assertEquals(200, response.getStatusCode());
+        assertEquals(200, response.getStatusCode());
 
         List<ActivitiesResponse> activitiesResponseList = response.as(new TypeRef<>() {});
 

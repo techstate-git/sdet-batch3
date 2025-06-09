@@ -5,10 +5,14 @@ import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
 
 public class Authorization {
-    LoginPage loginPage = new LoginPage();
+    private final LoginPage loginPage;
+
+    public Authorization(LoginPage loginPage) {
+        this.loginPage = loginPage;
+    }
 
     @Given("I login with username {string} and password {string}")
-    public void i_login_with_username_and_password(String username, String password) {
+    public void i_login_with_username_and_password(String username, String password) throws InterruptedException {
         loginPage.login(username, password);
     }
     @Then("I should see the dashboard page")

@@ -1,13 +1,14 @@
-import io.cucumber.junit.Cucumber;
-import io.cucumber.junit.CucumberOptions;
-import org.junit.runner.RunWith;
+import org.junit.platform.suite.api.ConfigurationParameter;
+import org.junit.platform.suite.api.SelectClasspathResource;
+import org.junit.platform.suite.api.Suite;
 
-@RunWith(Cucumber.class)
-@CucumberOptions(
-        features = "src/test/resources/features",
-        glue = "stepDefinitions",
-        plugin = {"pretty", "html:target/cucumber-reports.html"},
-        monochrome = true
-)
+import static io.cucumber.junit.platform.engine.Constants.*;
+
+@Suite
+@SelectClasspathResource("features")
+@ConfigurationParameter(key = GLUE_PROPERTY_NAME, value = "stepDefinitions")
+@ConfigurationParameter(key = PLUGIN_PROPERTY_NAME, value = "pretty, html:target/cucumber.html")
+@ConfigurationParameter(key = FILTER_TAGS_PROPERTY_NAME, value = "@api") // or use "${cucumber.filter.tags}"
 public class TestRunner {
+
 }

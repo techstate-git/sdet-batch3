@@ -14,8 +14,12 @@ public class AdminPage {
     private final WebDriver driver;
 
     public AdminPage() {
-        this.finder = new ElementFinder(DriverManager.getDriver());
-        driver = DriverManager.getDriver();
+        WebDriver webDriver = DriverManager.getDriver();
+        if (webDriver == null) {
+            throw new IllegalStateException("❌ WebDriver is null. Did you forget to call DriverManager.initDriver()?");
+        }
+        this.driver = webDriver;
+        this.finder = new ElementFinder(webDriver);
     }
 
     public void createProduct(String productName) {

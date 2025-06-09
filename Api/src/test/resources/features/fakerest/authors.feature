@@ -1,3 +1,4 @@
+@api
 Feature: Test authors
 
   Scenario: Get Authors

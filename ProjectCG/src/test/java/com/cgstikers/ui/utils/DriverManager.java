@@ -7,12 +7,13 @@ import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.chrome.ChromeOptions;
 
 public class DriverManager {
-    private static final ThreadLocal<WebDriver> driver = new ThreadLocal<>();
+    private static WebDriver driver;
 
-    public static void initDriver() {
-        if (driver.get() == null) {
+    public static WebDriver getDriver() {
+        if (driver == null) {
             WebDriverManager.chromedriver().setup();
 
+            // Set Chrome options to disable password manager
             ChromeOptions options = new ChromeOptions();
             options.addArguments("--disable-notifications");
             options.addArguments("--disable-infobars");
@@ -22,20 +23,18 @@ public class DriverManager {
             options.addArguments("credentials_enable_service=false");
             options.addArguments("profile.password_manager_enabled=false");
 
-            WebDriver chromeDriver = new ChromeDriver(options);
-            chromeDriver.manage().window().maximize();
-            driver.set(chromeDriver);
+            driver = new ChromeDriver(options);
+            driver.manage().window().maximize();
         }
+        return driver;
     }
 
-    public static WebDriver getDriver() {
-        return driver.get();
-    }
-
-    public static void quitDriver() {
-        if (driver.get() != null) {
-            driver.get().quit();
-            driver.remove();
+    @AfterAll
+    public static void tearDown() {
+        if (driver != null) {
+            System.out.println("Closing driver after scenario: ");
+            driver.quit();
+            driver = null; // Ensure the driver is completely killed
         }
     }
 }

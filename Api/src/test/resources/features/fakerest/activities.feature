@@ -1,3 +1,4 @@
+@api
 Feature: Test Activities
 
   Scenario: Get Activities
